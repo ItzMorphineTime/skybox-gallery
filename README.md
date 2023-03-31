@@ -7,11 +7,21 @@ Skybox Gallery and Generator Tool is a web-based tool that generates and display
 Here are some screenshots of the Skybox Gallery and Generator Tool:
 
 ![Screenshot 1](/screenshots/SkyboxGallery.png)
+
+- 3D
+
 ![Screenshot 2](/screenshots/SkyboxGallery3D.png)
 ![Screenshot 3](/screenshots/SkyboxGallery3D_2.png)
+
 ![Screenshot 4](/screenshots/SkyboxGallery3D_3.png)
 ![Screenshot 5](/screenshots/SkyboxGallery3D_4.png)
 
+- Video
+
+<video width="320" height="240" controls>
+  <source src="/screenshots/Skybox Gallery Demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ## Features
 
