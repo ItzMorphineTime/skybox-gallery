@@ -6,10 +6,12 @@ Skybox Gallery is a web-based tool for generating and exploring 3D images called
 
 Here are some screenshots of the Skybox Gallery and Generator Tool:
 
-![Screenshot 1](/screenshots/screenshot1.png)
-![Screenshot 2](/screenshots/screenshot2.png)
-![Screenshot 3](/screenshots/screenshot3.png)
-![Screenshot 4](/screenshots/screenshot4.png)
+![Screenshot 1](/screenshots/SkyboxGallery.png)
+![Screenshot 2](/screenshots/SkyboxGallery3D.png)
+![Screenshot 3](/screenshots/SkyboxGallery3D_2.png)
+![Screenshot 4](/screenshots/SkyboxGallery3D_3.png)
+![Screenshot 5](/screenshots/SkyboxGallery3D_4.png)
+
 
 ## Features
 
