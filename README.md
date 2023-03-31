@@ -1,6 +1,6 @@
 # Skybox Gallery and Generator Tool
 
-Skybox Gallery is a web-based tool for generating and exploring 3D images called Skyboxes. A Skybox is a 6-sided cube that represents the environment around the viewer. Skybox Gallery offers a variety of generator options, each with its unique algorithm, to create Skyboxes using prompts, seed values, and other customizable parameters. The tool uses the [Blockade Labs API](https://www.blockadelabs.com/) to generate and retrieve gallery images.
+Skybox Gallery and Generator Tool is a web-based tool that generates and displays 360-degree projections of 2D textures onto a sphere or equorectangular mesh, known as Skyboxes. The tool uses Bootstrap and Handlebars to create a gallery of generated Skybox images and a modal popup to display each image in a 3D virtual environment using Three.js. The Skyboxes are generated using various algorithms and customizable parameters, and the tool uses the [Blockade Labs API](https://www.blockadelabs.com/) to generate and retrieve the images.
 
 ## Screenshots
 
