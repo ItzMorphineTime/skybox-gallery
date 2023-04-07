@@ -276,6 +276,7 @@ if(false){
       console.log(apiKey);
       const skyboxStylesUrl = "https://backend.blockadelabs.com/api/v1/skybox/styles?api_key=" + apiKey;
       const skyboxStyleSelect = document.getElementById("skybox-style");
+      const skyboxStyleSelect2 = document.getElementById("skybox-skybox-style");
       fetch(skyboxStylesUrl)
         .then((response) => response.json())
         .then((styles) => {
@@ -284,6 +285,7 @@ if(false){
             option.value = style.id;
             option.text = style.name;
             skyboxStyleSelect.add(option);
+            skyboxStyleSelect2.add(option);
           });
 
           const loadedAlert = document.getElementById("loaded_alert");
