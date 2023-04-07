@@ -10,9 +10,35 @@ const textureLoader = new THREE.TextureLoader();
 const viewport = document.createElement("div");
 
 // Add download button to the viewport
+// const downloadBtn = document.createElement("button");
+// downloadBtn.className = "download-btn";
+// downloadBtn.textContent = "Download";
+// viewport.appendChild(downloadBtn);
+
+const downloadJPG = async (url, filename) => {
+  const data = await fetch(url)
+  const blob = await data.blob()
+  const objectUrl = URL.createObjectURL(blob)
+
+  const link = document.createElement('a')
+
+  link.setAttribute('href', objectUrl)
+  link.setAttribute('download', filename)
+  link.style.display = 'none'
+
+  document.body.appendChild(link)
+
+  link.click()
+
+  document.body.removeChild(link)
+}
+
+	// Add download button to the viewport
 const downloadBtn = document.createElement("button");
 downloadBtn.className = "download-btn";
+// downloadBtn.style="z-index: 10;cursor:pointer;"
 downloadBtn.textContent = "Download";
+container.appendChild(downloadBtn);
 viewport.appendChild(downloadBtn);
 
 // Add spin speed slider to the viewport
@@ -116,17 +142,19 @@ function createViewport2(config) {
   //   renderer.setSize(canvasSize.width, canvasSize.height);
   viewport.appendChild(renderer.domElement);
 
-  downloadBtn.onclick = function () {
-    const link = document.createElement("a");
-    link.href = config.texturePath;
-    // let stringy = config.texturePath.substring(0, config.texturePath.lastIndexOf("/"));
-    // link.download = new String(stringy ,".jpg");
-    link.download = `${config.title}.jpg`;
-    link.style.display = "none";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  downloadBtn.onclick = function(){downloadJPG(config.texturePath, `${config.title}.jpg`)}
+
+  // downloadBtn.onclick = function () {
+  //   const link = document.createElement("a");
+  //   link.href = config.texturePath;
+  //   // let stringy = config.texturePath.substring(0, config.texturePath.lastIndexOf("/"));
+  //   // link.download = new String(stringy ,".jpg");
+  //   link.download = `${config.title}.jpg`;
+  //   link.style.display = "none";
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
 
   // Download button event listener
   //   downloadBtn.addEventListener("click", () => {

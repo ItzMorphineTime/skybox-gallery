@@ -127,13 +127,12 @@ async function fetchImageList(params) {
   
     const data = await response.json();
     return data.data;
-  }
+}
 
-  async function generateImage(request_details, params) {
+async function generateImage(request_details, params) {
     const generateImagineUrl = `https://backend.blockadelabs.com/api/v1/imagine/requests?${new URLSearchParams(params)}`;
 
     const response = await fetch(generateImagineUrl, request_details);
-  
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}`);
     }
@@ -141,8 +140,22 @@ async function fetchImageList(params) {
     const data = await response.json();
     console.log(data);
     return data.data;
-  }
+}
 
+async function generateSkyboxRemix(formData, params){
+  const skyboxUrl = `https://backend.blockadelabs.com/api/v1/skybox?${new URLSearchParams(params)}`;
+
+  const response = await fetch(skyboxUrl, formData)
+    .then(response => response.json())
+    .then(data => {
+      console.log('Skybox Remix generated:', data);
+    })
+    .catch(error => {
+      console.error('Error generating Skybox Remix:', error);
+    });
+    console.log(response.data);
+    return response.data;
+}
 
 $(document).ready(function () {
   LoadHandlebarsTemplates();
@@ -169,6 +182,42 @@ $(document).ready(function () {
     }
   });
 
+
+  const generateSkyboxForm = document.getElementById("generate-skybox-form");
+  generateSkyboxForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const formElements = event.target.elements;
+    const formData = {
+        // generator: formElements.generator.value,
+        prompt: formElements["skybox-prompt"].value,
+        negative_text: formElements["skybox-negative-text"].value,
+        // seed: formElements.seed.value,
+        // animation_mode: formElements["animation-mode"].value,
+        // webhook_url: formElements["webhook-url"].value,
+        skybox_style_id: formElements["skybox-skybox-style"].value,
+    };
+
+    const remixID = formElements["skybox-remix-imagine-id"].value;
+    if (remixID) {
+      data.remix_imagine_id = remixID;
+    }
+
+    const queryStringData = {
+        api_key: apiKey,
+    };
+    const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+    };
+    let sky_response = generateSkyboxRemix(requestOptions, queryStringData)
+  });
+
+
+if(false){
   const generateImagineForm = document.getElementById("generate-imagine-form");
 
   generateImagineForm.addEventListener("submit", function (event) {
@@ -193,12 +242,28 @@ $(document).ready(function () {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-      };
+    };
 
     let gen_response = generateImage(requestOptions, queryStringData);
+
+
+
+    // const response = await axios.post(API_ENDPOINT, {
+    //   api_key: API_KEY,
+    //   prompt: prompt,
+    //   remix_imagine_id: remixImagineId,
+    //   skybox_style_id: skyboxStyleId,
+    //   webhook_url: webhookUrl
+    // });
+
+    // const data = response.data;
+
+    // console.log('Skybox Remix generated:', data);
+
     // console.log(gen_response);
 
   });
+}
 
 
   const apiKeyForm = document.getElementById("api-key-form");
