@@ -128,6 +128,7 @@ function init() {
 
 }
 
+let firstlol = false;
 export function loadTex(texPath, depthPath){
 
   loader.load( texPath, function ( texture ) {
@@ -145,7 +146,16 @@ export function loadTex(texPath, depthPath){
     sphere.material.displacementMap = depth;
 
   } );			
+  if(!firstlol){
+    console.log("test");
+    setTimeout(() => {
+      onWindowResize();
+      //   //TODO: Remove this hacky fudge
+    }, 3000);
 
+
+  }
+  firstlol = true;
 }
 
 
