@@ -22,10 +22,11 @@ function init() {
   gui.add( obj,'insideView' ).onChange( value => {
     if(value){
       camera.position.set(0,0,0);
+      controls.target.set( 1, 0, 0 );
     }else{
       camera.position.set(6,6,0);
+      controls.target.set( 0, 0, 0 );
     }
-    controls.target.set( 0, 0, 0 );
     controls.update();
   } );
   
@@ -101,6 +102,11 @@ function init() {
     const imageDetails = document.getElementById("image-details");
     imageDetails.classList.toggle("collapse");
   }}, 'toggleImageDetails').name("Toggle Prompt Details");
+
+  // Add the button to toggle the modal close
+  gui.add({ toggleModal: () => {
+    $('#close-modal').click();
+  }}, 'toggleModal').name("Close");
 
   containerGUI.appendChild( gui.domElement);
   
