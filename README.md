@@ -17,8 +17,13 @@ Here are some screenshots of the Skybox Gallery and Generator Tool:
 ![Screenshot 5](/screenshots/SkyboxGallery3D_4.png)
 
 - Video
-
+<video width="320" height="240" controls>
+  <source src="https://itzmorphinetime.github.io/skybox-gallery/screenshots/Skybox Gallery Demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 **Note:** Due to GitHub's security restrictions on embedded content, the video preview is not available directly in the repository. To view the video, please download it from the `/screenshots` folder or visit the live demo of the project.
+
+https://itzmorphinetime.github.io/skybox-gallery/screenshots/Skybox%20Gallery%20Demo.mp4
 
 ## Features
 
