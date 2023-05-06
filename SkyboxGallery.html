@@ -11,10 +11,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="SkyboxGallery.js" defer></script>
+  <script src="SkyboxGallery.js"  type="module" defer></script>
   <!-- <script src="Obfusticated.js"></script> -->
   <!-- <script src="TotallyNormalFile.js" defer></script> -->
-  <script src="3DUI.js" defer></script>
+  <script src="3DUI_depth.js" type="module" defer></script>
 
   <title>Skybox Gallery</title>
 </head>
@@ -79,6 +79,10 @@
                     <div class="form-group">
                       <label for="webhook-url">Webhook URL</label>
                       <input type="text" class="form-control" id="skybox-webhook-url" placeholder="Webhook URL">
+                    </div>
+                    <div class="form-group">
+                      <label for="depth">Enable Depth</label>
+                      <input type="checkbox" id="skybox-depth" placeholder="Depth" checked>
                     </div>
                   </div>
                   
@@ -257,16 +261,25 @@
         </div>
         <div class="modal-body">
           <img src="" class="img-fluid" id="imageModalImg" alt="" hidden>
-          <div id="container"></div>
 
-          <div class="mt-3" id="imageModalDetails">
-            <p class="creator"></p>
-            <p>
-              <strong>Prompt:</strong> <span class="prompt"></span><br>
-              <strong>Negative Prompt:</strong> <span class="negative-prompt"></span><br>
-              <strong>Seed:</strong> <span class="seed"></span>
-            </p>
+          <!-- <h5 class="mt-3">Optional</h5> -->
+          <div class="collapse" id="image-details">
+            <div class="mt-3" id="imageModalDetails">
+              <p class="creator"></p>
+              <p>
+                <strong>Prompt:</strong> <span class="prompt"></span><br>
+                <strong>Negative Prompt:</strong> <span class="negative-prompt"></span><br>
+                <strong>seed:</strong> <span class="seed"></span><br>
+                <strong>Style ID:</strong> <span class="styleID"></span><br>
+                <strong>Style Name:</strong> <span class="styleName"></span><br>
+                <strong>RGB Url:</strong> <span class="rgbUrl"></span><br>
+                <strong>Depth Url:</strong> <span class="depthUrl"></span><br>
+              </p>
+            </div>
           </div>
+
+          <div id="container-3D-GUI" style="position: absolute;"></div>
+          <div id="container-3D"></div>
         </div>
       </div>
     </div>

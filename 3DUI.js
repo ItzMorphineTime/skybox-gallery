@@ -134,40 +134,10 @@ function createViewport2(config) {
   let fudge = 55; //TODO: Remove fudge
   renderer.setSize(window.innerWidth - fudge, (window.innerWidth - fudge) / 2);
 
-  //   const canvasSize = renderer.domElement.parentElement.getBoundingClientRect();
-  //   renderer.setSize(canvasSize.width, canvasSize.height);
-  //   camera.aspect = canvasSize.width / canvasSize.height;
-
-  //   const canvasSize = viewport.getBoundingClientRect();
-  //   renderer.setSize(canvasSize.width, canvasSize.height);
   viewport.appendChild(renderer.domElement);
 
   downloadBtn.onclick = function(){downloadJPG(config.texturePath, `${config.title}.jpg`)}
 
-  // downloadBtn.onclick = function () {
-  //   const link = document.createElement("a");
-  //   link.href = config.texturePath;
-  //   // let stringy = config.texturePath.substring(0, config.texturePath.lastIndexOf("/"));
-  //   // link.download = new String(stringy ,".jpg");
-  //   link.download = `${config.title}.jpg`;
-  //   link.style.display = "none";
-  //   document.body.appendChild(link);
-  //   link.click();
-  //   document.body.removeChild(link);
-  // };
-
-  // Download button event listener
-  //   downloadBtn.addEventListener("click", () => {
-  //     const link = document.createElement("a");
-  //     link.href = config.texturePath;
-  //     // let stringy = config.texturePath.substring(0, config.texturePath.lastIndexOf("/"));
-  //     // link.download = new String(stringy ,".jpg");
-  //     link.download = `${config.title}.jpg`;
-  //     link.style.display = "none";
-  //     document.body.appendChild(link);
-  //     link.click();
-  //     document.body.removeChild(link);
-  //   });
 
   spinSpeedSlider.value = config.spinSpeed || 0;
   fovSlider.value = camera.fov;
@@ -185,10 +155,6 @@ function createViewport2(config) {
     config.spinSpeed = newSpinSpeed;
   });
 
-  //   const canvasSize = renderer.domElement.parentElement.getBoundingClientRect();
-  //   renderer.setSize(canvasSize.width, canvasSize.height);
-  //   camera.aspect = canvasSize.width / canvasSize.height;
-//   camera.updateProjectionMatrix();
 
   setTimeout(() => {
     //TODO: Remove this hacky fudge
