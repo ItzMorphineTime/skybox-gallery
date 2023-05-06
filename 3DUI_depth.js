@@ -25,7 +25,7 @@ function init() {
     }else{
       camera.position.set(6,6,0);
     }
-    controls.target.set( 1, 0, 0 );
+    controls.target.set( 0, 0, 0 );
     controls.update();
   } );
   
@@ -45,7 +45,7 @@ function init() {
   scene.add( camera );
   
   controls = new OrbitControls( camera, container );
-  controls.target.set( 1, 0, 0 );
+  controls.target.set( 0, 0, 0 );
   controls.update();				
 
   // Create the panoramic sphere geometery
@@ -86,6 +86,22 @@ function init() {
     }
 
   } );
+
+  // Add the button to scroll to the top of the page
+  // Add the button to scroll to the top of the page
+  gui.add({ scrollToTop: () => {
+  $('.modal').animate({ scrollTop: 0 }, 'fast');
+  console.log('test');
+    // window.scrollTo({ top: 0, behavior: "smooth" });
+  }}, 'scrollToTop').name("Scroll to top");
+  // $('html, body').animate({ scrollTop: 0 }, 'fast');
+
+  // Add the button to toggle the collapsible div with id "image-details"
+  gui.add({ toggleImageDetails: () => {
+    const imageDetails = document.getElementById("image-details");
+    imageDetails.classList.toggle("collapse");
+  }}, 'toggleImageDetails').name("Toggle Prompt Details");
+
   containerGUI.appendChild( gui.domElement);
   
   // On load complete add the panoramic sphere to the scene
