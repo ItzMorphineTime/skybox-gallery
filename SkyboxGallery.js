@@ -28,6 +28,8 @@ var imageList = [
     }
 ];
 
+import loadTex from './3DUI_depth.js'
+
 let apiKey = ``;
 // const container = document.getElementById("container");
 
@@ -48,9 +50,9 @@ function LoadHandlebarsTemplates(){
               alt: image.prompt,
               details: {
                 creator: `Created by ${image.username} on ${new Date(image.created_at).toLocaleDateString()}`,
-                prompt: image.generator_data.prompt,
-                negativePrompt: image.generator_data.negative_text,
-                seed: image.generator_data.seed,
+                prompt: image.prompt,
+                negativePrompt: image.negative_text,
+                seed: image.seed,
               },
             };
           }),
@@ -100,13 +102,16 @@ function LoadHandlebarsTemplates(){
       $("#imageModalDetails .seed").text(details.seed);
   
       imageModal.show();
-      createViewport2(createConfig(src, title));
+
+      loadTex(src, src);
+
+      // createViewport2(createConfig(src, title));
     });
   
     // Close modal when clicking outside the modal or on the close button
     $("#imageModal").on("click", ".modal-dialog, .btn-close", function (e) {
       if (e.target !== this) return;
-      closeViewport();
+      // closeViewport();
       imageModal.hide();
     });
 

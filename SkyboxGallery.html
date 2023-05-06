@@ -11,10 +11,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="SkyboxGallery.js" defer></script>
+  <script src="SkyboxGallery.js"  type="module" defer></script>
   <!-- <script src="Obfusticated.js"></script> -->
   <!-- <script src="TotallyNormalFile.js" defer></script> -->
-  <script src="3DUI.js" defer></script>
+  <script src="3DUI_depth.js" type="module" defer></script>
 
   <title>Skybox Gallery</title>
 </head>
@@ -257,7 +257,8 @@
         </div>
         <div class="modal-body">
           <img src="" class="img-fluid" id="imageModalImg" alt="" hidden>
-          <div id="container"></div>
+          <div id="container-3D-GUI" style="position: absolute;"></div>
+          <div id="container-3D"></div>
 
           <div class="mt-3" id="imageModalDetails">
             <p class="creator"></p>
