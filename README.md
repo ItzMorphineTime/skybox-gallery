@@ -1,6 +1,6 @@
 # Skybox Gallery and Generator Tool
 
-Skybox Gallery and Generator Tool is a web-based tool that generates and displays 360-degree projections of 2D textures onto a sphere or equorectangular mesh, known as Skyboxes. The tool uses Bootstrap and Handlebars to create a gallery of generated Skybox images and a modal popup to display each image in a 3D virtual environment using Three.js. The Skyboxes are generated using various algorithms and customizable parameters, and the tool uses the [Blockade Labs API](https://www.blockadelabs.com/) to generate and retrieve the images.
+Skybox Gallery and Generator Tool is a feature-rich, web-based tool that generates and displays 360-degree projections of 2D textures onto a sphere or equorectangular mesh, known as Skyboxes. The tool uses Bootstrap and Handlebars to create a gallery of generated Skybox images and a modal popup to display each image in a 3D virtual environment using Three.js. The Skyboxes are generated using various algorithms and customizable parameters, and the tool uses the [Blockade Labs API](https://www.blockadelabs.com/) to generate and retrieve the images.
 
 ## Screenshots
 
@@ -18,23 +18,27 @@ Here are some screenshots of the Skybox Gallery and Generator Tool:
 
 - Video
 
-<video width="320" height="240" controls>
-  <source src="/screenshots/Skybox Gallery Demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+**Note:** Due to GitHub's security restrictions on embedded content, the video preview is not available directly in the repository. To view the video, please download it from the `/screenshots` folder or visit the live demo of the project.
 
 ## Features
 
 - Generate Skyboxes using customizable parameters and algorithms.
-- Explore and view generated Skyboxes in a 3D virtual environment.
+- Remix Skyboxes using the ID/Seed of another image.
+- Add Depth Textures to the generator with adjustable depth strength.
+- Explore and view generated Skyboxes in a 3D virtual environment with improved controls.
 - Search and filter Skyboxes by category, generator, status, and other parameters.
+- View more details about each generated image.
 - Use a Webhook URL to receive notifications when a Skybox is generated.
 - Load an API key to access restricted functionality.
 - Change the theme and style of the tool using the CSS tab.
 
 ## Usage
 
+Firstly enter your own API KEY for blockade labs and click load. A message should pop up.
+
 To generate a Skybox, navigate to the Generate tab and fill out the required and optional parameters. Click the "Generate" button, and the tool will generate a Skybox based on the given parameters. You can then view and explore the generated Skybox in the 3D virtual environment.
+
+To remix a Skybox, enter the ID/Seed of an existing image into the Remix-Id aditional options and adjust the prompt as desired. Click the "Generate" button to generate a new Skybox based on the original image and the modified parameters.
 
 To search for previously generated Skyboxes, navigate to the Search tab and use the available filters to find the desired Skyboxes. Click on a Skybox to view its details and explore it in the 3D virtual environment.
 
