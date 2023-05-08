@@ -10,7 +10,7 @@ varying vec2 vUv;
 varying vec3 vNormal;
 varying vec3 vWorldNormal; // Add a varying for the world space normal
 uniform sampler2D displacementMap;
-uniform float displaceScale;
+uniform float depthScale;
 uniform float lerpFactor;
 uniform float depthFactor1;
 uniform float depthFactor2;
@@ -22,9 +22,15 @@ void main() {
 
   // Displace the vertex based on the displacement map and scale
   float depth = texture2D(displacementMap, vUv).r ;
-  float displacement = (depth + depthFactor1) * displaceScale;
+  float displacement = (depth + depthFactor1) * depthScale;
   vec3 newPositionNormal = position + (vNormal * displacement);
-  vec3 newPositionZ = position + vec3(0.0, (depth + vNormal.y + depthFactor2) * -displaceScale, 0.0);
+  
+  float newPosX1 = (depth + vNormal.x) * -depthScale;
+  float newPosZ1 = (depth + vNormal.z) * -depthScale;
+  float d2 = 0.0 + depthFactor2;
+  float newPosX = mix(newPosX1, 0.0, d2);
+  float newPosZ = mix(newPosZ1, 0.0, d2);
+  vec3 newPositionZ = position + vec3(newPosX, (depth + vNormal.y) * -depthScale, newPosZ);
 
   // Lerp between newPositionNormal and newPositionZ based on lerpFactor
   vec3 newPosition = mix(newPositionNormal, newPositionZ, lerpFactor);
@@ -48,10 +54,10 @@ const customMaterial = new THREE.ShaderMaterial({
   uniforms: {
     map: { value: null },
     displacementMap: { value: null },
-    displaceScale: { value: 0 },
-    lerpFactor: { value: 0 },
-    depthFactor1: { value: 0 },
-    depthFactor2: { value: 0 },
+    depthScale: { value: 0.0 },
+    lerpFactor: { value: 0.0 },
+    depthFactor1: { value: 0.0 },
+    depthFactor2: { value: 0.0 },
   },
   vertexShader: vertexShader,
   fragmentShader: fragmentShader,
@@ -66,7 +72,7 @@ function init() {
   var obj = {
     insideView: false,
     changeScene: false,
-    displaceScale: -4,
+    depthScale: -4,
     segments: 256,
     wireframe: false,
     depthLerp: 0.01,
@@ -122,8 +128,8 @@ function init() {
   loader = new THREE.TextureLoader(manager);
 
   // Update the displaceScale uniform when the GUI value changes
-  gui.add(obj, "displaceScale", -6, 6, 0.25).onChange((value) => {
-    customMaterial.uniforms.displaceScale.value = value;
+  gui.add(obj, "depthScale", -6, 6, 0.25).onChange((value) => {
+    customMaterial.uniforms.depthScale.value = value;
   });
   // gui.add(obj, "displaceScale", -6, 6, 0.25).onChange((value) => {
   //   panoSphereMat.displacementScale = value;
