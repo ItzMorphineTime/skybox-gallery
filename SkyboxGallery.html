@@ -20,24 +20,118 @@
 </head>
 <body>
   <div class="container">
+    <button class="btn btn-secondary m-3" type="button" data-toggle="collapse" data-target="#gen-options" aria-expanded="false" aria-controls="gen-options">
+      Generate Skybox
+    </button>
+    <button class="btn btn-secondary m-3" type="button" data-toggle="collapse" data-target="#search-options" aria-expanded="false" aria-controls="search-options">
+      Search Options
+    </button>
+    <div class="row collapse" id="gen-options">
+      <!--Skybox form-->
+      <form id="generate-skybox-form" class="my-3">
+        <h5>Required</h5>
+        
+        <div class="form-group">
+            <label for="skybox-prompt">Prompt</label>
+            <input type="text" class="form-control" id="skybox-prompt" placeholder="Prompt" required>
+        </div>
+        <div class="form-group">
+            <label for="skybox-skybox-style">Skybox Style</label>
+            <select id="skybox-skybox-style" class="form-control" required oninvalid="this.setCustomValidity('Invalid id, Load API-KEY ?')"></select>
+        </div>
+        <button type="submit" class="btn btn-primary m-3">Generate</button>
+        <button class="btn btn-secondary m-3" type="button" data-toggle="collapse" data-target="#advanced-options" aria-expanded="false" aria-controls="advanced-options">
+          Advanced Options
+        </button>
+        <!-- <h5 class="mt-3">Optional</h5> -->
+        <div class="collapse" id="advanced-options">
+          <div class="form-group">
+              <label for="negative-text">Negative Text</label>
+              <input type="text" class="form-control" id="skybox-negative-text" placeholder="Negative Text" value="Blurry, low detail, error, text">
+            </div>
+          <div class="form-row d-flex">
+            <div class="form-group col-5">
+              <label for="remix-imagine-id">Seed</label>
+              <input type="number" class="form-control" id="skybox-remix-imagine-id" placeholder="Remix-Seed">
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label for="webhook-url">Webhook URL</label>
+            <input type="text" class="form-control" id="skybox-webhook-url" placeholder="Webhook URL">
+          </div>
+          <div class="form-group">
+            <label for="depth">Enable Depth</label>
+            <input type="checkbox" id="skybox-depth" placeholder="Depth" checked>
+          </div>
+        </div>
+        
+      </form>
+        
+    </div>
+    <div class="row collapse" id="search-options">
+      <form id="image-query-form" class="my-3">
+          <div class="form-row d-flex">
+              <div class="form-group col-8">
+              <label for="status">Status</label>
+              <select id="status" class="form-control">
+                  <option value="all" selected>All</option>
+                  <option value="pending">Pending</option>
+                  <option value="dispatched">Dispatched</option>
+                  <option value="processing">Processing</option>
+                  <option value="complete">Complete</option>
+                  <option value="abort">Abort</option>
+                  <option value="error">Error</option>
+              </select>
+              </div>
+              <div class="form-group col-2">
+              <label for="limit">Limit</label>
+              <input type="number" class="form-control" id="limit" placeholder="Limit" value="25">
+              </div>
+              <div class="form-group col-2">
+              <label for="offset">Offset</label>
+              <input type="number" class="form-control" id="offset" placeholder="Offset" value="0">
+              </div>
+          </div>
+          <div class="form-row d-flex">
+              <div class="form-group col-5">
+              <label for="query">Query</label>
+              <input type="text" class="form-control" id="query" placeholder="Title or prompt">
+              </div>
+              <div class="form-group col-5">
+              <label for="generator">Generator</label>
+              <input type="text" class="form-control" id="generator" placeholder="Generator">
+              </div>
+          </div>
+
+          <!-- <div class="form-row d-flex">
+              <div class="form-group col-12">
+              <label for="api_key">API-KEY</label>
+              <input type="text" class="form-control" id="api_key" placeholder="API-KEY">
+              </div>
+          </div> -->
+
+          <button id="SearchButton" type="submit" class="btn btn-primary m-1">Search</button>
+      </form>
+    </div>
     <!--Nav bars-->
-    <ul class="nav nav-tabs mt-4" role="tablist">
-      <li class="nav-item" role="presentation">
+    <ul class="nav nav-tabs" role="tablist">
+      <!-- <li class="nav-item" role="presentation">
         <a class="nav-link active" id="skybox-tab" data-bs-toggle="tab" href="#skybox-content" role="tab" aria-controls="skybox-content" aria-selected="true" > Generate Skybox</a>
-      </li>
-      <li class="nav-item" role="presentation">
+      </li> -->
+      <!-- <li class="nav-item" role="presentation">
         <a class="nav-link" id="generate-tab" data-bs-toggle="tab" href="#generate" role="tab" aria-controls="generate" >Imagine (test)</a>
-      </li>
-      <li class="nav-item" role="presentation">
+      </li> -->
+      <!-- <li class="nav-item" role="presentation">
           <a class="nav-link" id="history-tab" data-bs-toggle="tab" href="#history" role="tab" aria-controls="history" >Search</a>
-      </li>
+      </li> -->
       <!-- Tab buttons will be generated using Handlebars -->
       <div id="categoryTabs" class="d-flex"></div>
 
       <li class="nav-item" role="presentation" hidden>
         <a class="nav-link" id="css-tab" data-bs-toggle="tab" href="#css" role="tab" aria-controls="css" >CSS</a>
       </li>
-      <li class="nav-item" role="presentation">
+      <li class="nav-item " role="presentation">
           <a class="nav-link" id="api-key-tab" data-bs-toggle="tab" href="#api-key" role="tab" aria-controls="api-key" >API-KEY</a>
       </li>
     </ul>
@@ -45,51 +139,9 @@
     <!--Tab Content-->
     <div class="tab-content">
         <!--Generate Skybox Tab-->
-        <div class="tab-pane fade show active" id="skybox-content" role="tabpanel" aria-labelledby="skybox-tab">
-            <div class="row">
-                <!--Skybox form-->
-                <form id="generate-skybox-form" class="my-3">
-                  <h5>Required</h5>
-                  
-                  <div class="form-group">
-                      <label for="skybox-prompt">Prompt</label>
-                      <input type="text" class="form-control" id="skybox-prompt" placeholder="Prompt" required>
-                  </div>
-                  <div class="form-group">
-                      <label for="skybox-skybox-style">Skybox Style</label>
-                      <select id="skybox-skybox-style" class="form-control" required oninvalid="this.setCustomValidity('Invalid id, Load API-KEY ?')"></select>
-                  </div>
-                  <button type="submit" class="btn btn-primary m-3">Generate</button>
-                  <button class="btn btn-secondary m-3" type="button" data-toggle="collapse" data-target="#advanced-options" aria-expanded="false" aria-controls="advanced-options">
-                    Advanced Options
-                  </button>
-                  <!-- <h5 class="mt-3">Optional</h5> -->
-                  <div class="collapse" id="advanced-options">
-                    <div class="form-group">
-                        <label for="negative-text">Negative Text</label>
-                        <input type="text" class="form-control" id="skybox-negative-text" placeholder="Negative Text" value="Blurry, low detail, error, text">
-                      </div>
-                    <div class="form-row d-flex">
-                      <div class="form-group col-5">
-                        <label for="remix-imagine-id">Seed</label>
-                        <input type="number" class="form-control" id="skybox-remix-imagine-id" placeholder="Remix-Seed">
-                      </div>
-    
-                    </div>
-                    <div class="form-group">
-                      <label for="webhook-url">Webhook URL</label>
-                      <input type="text" class="form-control" id="skybox-webhook-url" placeholder="Webhook URL">
-                    </div>
-                    <div class="form-group">
-                      <label for="depth">Enable Depth</label>
-                      <input type="checkbox" id="skybox-depth" placeholder="Depth" checked>
-                    </div>
-                  </div>
-                  
-                </form>
-                  
-            </div>
-        </div>  
+        <!-- <div class="tab-pane fade show active" id="skybox-content" role="tabpanel" aria-labelledby="skybox-tab">
+
+        </div>   -->
         <!--Imagine Tab-->
         <div class="tab-pane fade" id="generate" role="tabpanel" aria-labelledby="generate-tab">
           <div class="row">
@@ -139,57 +191,15 @@
           </div>
         </div>  
         <!--Search Tab-->
-        <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
-            <div class="row">
-                <form id="image-query-form" class="my-3">
-                    <div class="form-row d-flex">
-                        <div class="form-group col-8">
-                        <label for="status">Status</label>
-                        <select id="status" class="form-control">
-                            <option value="all" selected>All</option>
-                            <option value="pending">Pending</option>
-                            <option value="dispatched">Dispatched</option>
-                            <option value="processing">Processing</option>
-                            <option value="complete">Complete</option>
-                            <option value="abort">Abort</option>
-                            <option value="error">Error</option>
-                        </select>
-                        </div>
-                        <div class="form-group col-2">
-                        <label for="limit">Limit</label>
-                        <input type="number" class="form-control" id="limit" placeholder="Limit" value="10">
-                        </div>
-                        <div class="form-group col-2">
-                        <label for="offset">Offset</label>
-                        <input type="number" class="form-control" id="offset" placeholder="Offset" value="0">
-                        </div>
-                    </div>
-                    <div class="form-row d-flex">
-                        <div class="form-group col-5">
-                        <label for="query">Query</label>
-                        <input type="text" class="form-control" id="query" placeholder="Title or prompt">
-                        </div>
-                        <div class="form-group col-5">
-                        <label for="generator">Generator</label>
-                        <input type="text" class="form-control" id="generator" placeholder="Generator">
-                        </div>
-                    </div>
-    
-                    <!-- <div class="form-row d-flex">
-                        <div class="form-group col-12">
-                        <label for="api_key">API-KEY</label>
-                        <input type="text" class="form-control" id="api_key" placeholder="API-KEY">
-                        </div>
-                    </div> -->
-    
-                    <button type="submit" class="btn btn-primary m-1">Search</button>
-                </form>
-            </div>
-        </div>
+        <!-- <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+        </div> -->
+
+        
         <!--Category Tab(s)-->
         <div class="tab-content" id="categoryContent">
         <!-- Tab contents will be generated using Handlebars -->
         </div>
+        
         <!--CSS Tab-->
         <div class="tab-pane fade" id="css" role="tabpanel" aria-labelledby="css-tab">
             <div class="row">
@@ -211,7 +221,7 @@
                     <input type="text" class="form-control" id="api_key" placeholder="API-KEY">
                     <button type="submit" class="btn btn-primary mt-2">LOAD</button>
                     <!-- <button type="submit" class="btn btn-primary mt-2" onclick="load_api_key()">LOAD</button> -->
-                    <h3 id="loaded_alert" hidden>Loaded</h3>
+                    <h3 id="loaded_alert">API KEY not loaded</h3>
                 </div>
             </form>
         </div>
@@ -233,8 +243,10 @@
 
   <!--Content Template-->
   <script id="content-template" type="text/x-handlebars-template">
+
     {{#each categories}}
       <div class="tab-pane fade" id="{{name}}" role="tabpanel" aria-labelledby="{{name}}-tab">
+
         <div class="row">
           {{#each images}}
             <div class="col-md-4 col-sm-6 mb-4">
